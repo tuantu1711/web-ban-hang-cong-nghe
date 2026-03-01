@@ -1,52 +1,98 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Giỏ hàng</title>
-<link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Giỏ hàng</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
 <div id="navbar-placeholder"></div>
-
 <script>
-fetch('navbar.html')
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById('navbar-placeholder').innerHTML = data;
-  });
+  fetch('navbar.html').then(res => res.text()).then(data => { document.getElementById('navbar-placeholder').innerHTML = data; });
 </script>
 
 <section class="cart-section">
   <div class="cart-box">
     <h2>Giỏ hàng</h2>
-
-    <table class="table">
+    <table class="table" id="cart-table">
       <thead>
         <tr>
           <th>Sản phẩm</th>
           <th>Giá</th>
           <th>Số lượng</th>
+          <th>Xóa</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Laptop Pro</td>
-          <td>12.500.000₫</td>
-          <td><input type="number" value="1" min="1"></td>
-        </tr>
-      </tbody>
+      <tbody id="cart-content"></tbody>
     </table>
-
-    <div class="cart-action">
+    <div id="empty-msg" style="display:none; text-align:center;">Giỏ hàng trống. <a href="shop.html">Mua ngay</a></div>
+    <div class="cart-action" id="cart-footer">
       <a href="checkout.html" class="btn btn-primary">Thanh toán</a>
+      <button onclick="clearCart()" class="btn btn-outline">Xóa hết</button>
     </div>
-
   </div>
 </section>
 
-<footer class="footer">© 2026 SimpleWeb</footer>
+<script>
+const products = {
+  1: { title: "Laptop Pro", price: 12500000 },
+  2: { title: "Smartphone", price: 7200000 },
+  3: { title: "Tai nghe Bluetooth", price: 1150000 },
+  4: { title: "Bàn phím cơ", price: 950000 },
+  5: { title: "Chuột gaming", price: 520000 },
+  6: { title: "Loa Bluetooth", price: 780000 }
+};
 
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Thêm sản phẩm mới từ URL nếu có
+const params = new URLSearchParams(window.location.search);
+const addId = params.get("add");
+if (addId && products[addId]) {
+  const existing = cart.find(item => item.id == addId);
+  if (existing) { existing.qty += 1; } 
+  else { cart.push({ id: addId, qty: 1 }); }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  window.history.replaceState({}, document.title, "cart.html"); // Xóa param trên URL
+}
+
+function renderCart() {
+  const container = document.getElementById('cart-content');
+  if (cart.length === 0) {
+    document.getElementById('cart-table').style.display = 'none';
+    document.getElementById('cart-footer').style.display = 'none';
+    document.getElementById('empty-msg').style.display = 'block';
+    return;
+  }
+  container.innerHTML = cart.map((item, index) => `
+    <tr>
+      <td>${products[item.id].title}</td>
+      <td>${products[item.id].price.toLocaleString()}₫</td>
+      <td><input type="number" value="${item.qty}" min="1" onchange="updateQty(${index}, this.value)"></td>
+      <td><button onclick="removeItem(${index})">❌</button></td>
+    </tr>
+  `).join('');
+}
+
+function updateQty(index, val) {
+  cart[index].qty = parseInt(val);
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
+function clearCart() {
+  localStorage.removeItem('cart');
+  cart = [];
+  renderCart();
+}
+
+renderCart();
+</script>
 </body>
 </html>
