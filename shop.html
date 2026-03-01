@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Cửa hàng - SimpleWeb</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<script>
+fetch('navbar.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('navbar-placeholder').innerHTML = data;
+  });
+</script>
+
+<section class="container mt-section">
+  <h2>Cửa hàng</h2>
+  <div class="grid grid-products">
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-1.jpg" alt="Laptop Pro"></div>
+      <div class="product-meta card-body">
+        <div class="card-title">Laptop Pro</div>
+        <div class="card-text">Hiệu năng cao, phù hợp học và làm việc</div>
+        <div class="product-price">12.500.000₫</div>
+        <div style="margin-top:auto"><a href="product.html" class="btn btn-primary">Xem</a></div>
+      </div>
+    </div>
+
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-2.jpg" alt="Smartphone"></div>
+      <div class="product-meta card-body">
+        <div class="card-title">Smartphone</div>
+        <div class="card-text">Màn hình sắc nét, pin trâu</div>
+        <div class="product-price">7.200.000₫</div>
+        <div style="margin-top:auto"><a href="product.html" class="btn btn-primary">Xem</a></div>
+      </div>
+    </div>
+
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-3.jpg" alt="Tai nghe Bluetooth"></div>
+      <div class="product-meta card-body">
+        <div class="card-title">Tai nghe Bluetooth</div>
+        <div class="card-text">Âm thanh cân bằng, chống ồn</div>
+        <div class="product-price">1.150.000₫</div>
+        <div style="margin-top:auto"><a href="product.html" class="btn btn-primary">Xem</a></div>
+      </div>
+    </div>
+
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-4.jpg" alt="Bàn phím cơ"></div>
+      <div class="product-meta card-body">
+        <div class="card-title">Bàn phím cơ</div>
+        <div class="card-text">Switch chất lượng, bền bỉ</div>
+        <div class="product-price">950.000₫</div>
+        <div style="margin-top:auto"><a href="product.html" class="btn btn-primary">Xem</a></div>
+      </div>
+    </div>
+
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-5.jpg" alt="Chuột gaming"></div>
+      <div class="product-meta card-body">
+        <div class="card-title">Chuột gaming</div>
+        <div class="card-text">Độ chính xác cao, DPI tuỳ chỉnh</div>
+        <div class="product-price">520.000₫</div>
+        <div style="margin-top:auto"><a href="product.html" class="btn btn-primary">Xem</a></div>
+      </div>
+    </div>
+
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-6.jpg" alt="Loa Bluetooth"></div>
+      <div class="product-meta card-body">
+        <div class="card-title">Loa Bluetooth</div>
+        <div class="card-text">Âm trầm mạnh, kích thước gọn</div>
+        <div class="product-price">780.000₫</div>
+        <div style="margin-top:auto"><a href="product.html" class="btn btn-primary">Xem</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">© 2026 SimpleWeb</footer>
+
+</body>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chi tiết sản phẩm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<script>
+fetch('navbar.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('navbar-placeholder').innerHTML = data;
+  });
+</script>
+
+<script>
+const products = {
+  1: {
+    title: "Laptop Pro",
+    img: "assets/img/product-1.jpg",
+    desc: "Hiệu năng cao, phù hợp học tập và làm việc.",
+    specs: { CPU: "Intel i7", RAM: "16GB", SSD: "512GB" }
+  },
+  2: {
+    title: "Smartphone",
+    img: "assets/img/product-2.jpg",
+    desc: "Màn hình sắc nét, pin trâu.",
+    specs: { Chip: "Snapdragon", RAM: "8GB", Storage: "256GB" }
+  },
+  3: {
+    title: "Tai nghe Bluetooth",
+    img: "assets/img/product-3.jpg",
+    desc: "Âm thanh cân bằng, chống ồn.",
+    specs: { Type: "Over-ear", Mic: "Có", ANC: "Có" }
+  },
+  4: {
+    title: "Bàn phím cơ",
+    img: "assets/img/product-4.jpg",
+    desc: "Switch chất lượng, bền bỉ.",
+    specs: { Switch: "Blue", Layout: "Full size" }
+  },
+  5: {
+    title: "Chuột gaming",
+    img: "assets/img/product-5.jpg",
+    desc: "DPI cao, độ chính xác tốt.",
+    specs: { DPI: "12000", Wireless: "Có" }
+  },
+  6: {
+    title: "Loa Bluetooth",
+    img: "assets/img/product-6.jpg",
+    desc: "Âm trầm mạnh, thiết kế gọn.",
+    specs: { Battery: "8h", Bluetooth: "5.0" }
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+if (products[id]) {
+  const p = products[id];
+
+  document.querySelector("h1").innerText = p.title;
+  document.querySelector(".product-image img").src = p.img;
+  document.querySelector(".product-desc").innerText = p.desc;
+
+  const specRows = document.querySelectorAll(".spec-row");
+  const keys = Object.keys(p.specs);
+
+  specRows.forEach((row, index) => {
+    if (keys[index]) {
+      row.children[0].innerText = keys[index];
+      row.children[1].innerText = p.specs[keys[index]];
+    }
+  });
+}
+</script>
+
+<footer class="footer">© 2026 SimpleWeb</footer>
+
+</body>
+</html>

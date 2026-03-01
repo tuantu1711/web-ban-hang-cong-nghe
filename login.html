@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đăng nhập</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<script>
+fetch('navbar.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('navbar-placeholder').innerHTML = data;
+  });
+</script>
+
+<section class="login-center">
+  <div class="login-box">
+    <h2>Đăng nhập</h2>
+    <form id="loginForm">
+      <input required placeholder="Email">
+      <input required type="password" placeholder="Mật khẩu">
+      <button class="btn btn-primary">Đăng nhập</button>
+    </form>
+  </div>
+</section>
+
+<div id="toast" class="notification">Đăng nhập thành công</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit',function(e){
+e.preventDefault();
+let t=document.getElementById('toast');
+t.style.display='block';
+setTimeout(()=>{window.location='index.html'},1000);
+});
+</script>
+
+<footer class="footer">© 2026 SimpleWeb</footer>
+</body>
+</html>

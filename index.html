@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>SimpleWeb</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<script>
+fetch('navbar.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('navbar-placeholder').innerHTML = data;
+  });
+</script>
+
+<section class="container mt-section">
+  <div class="hero-box">
+    <h1>Nền tảng mua sắm trực tuyến</h1>
+    <p>Giao diện hiện đại, tập trung trải nghiệm người dùng</p>
+    <a href="shop.html" class="btn btn-primary">Xem sản phẩm</a>
+  </div>
+</section>
+
+<section class="container mt-section">
+  <h2>Sản phẩm nổi bật</h2>
+  <div class="grid grid-products">
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-1.jpg" alt="Laptop Pro"></div>
+      <div class="card-body">
+        <div class="card-title">Laptop Pro</div>
+        <div class="card-text">Hiệu năng cao</div>
+        <a href="product.html" class="btn btn-primary">Chi tiết</a>
+      </div>
+    </div>
+
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-2.jpg" alt="Smartphone"></div>
+      <div class="card-body">
+        <div class="card-title">Smartphone</div>
+        <div class="card-text">Màn hình sắc nét</div>
+        <a href="product.html" class="btn btn-primary">Chi tiết</a>
+      </div>
+    </div>
+
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-3.jpg" alt="Tai nghe"></div>
+      <div class="card-body">
+        <div class="card-title">Tai nghe Bluetooth</div>
+        <div class="card-text">Khử ồn</div>
+        <a href="product.html" class="btn btn-primary">Chi tiết</a>
+      </div>
+    </div>
+
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-4.jpg" alt="Bàn phím"></div>
+      <div class="card-body">
+        <div class="card-title">Bàn phím cơ</div>
+        <div class="card-text">Switch bền</div>
+        <a href="product.html" class="btn btn-primary">Chi tiết</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="container mt-section">
+  <h2>Tin tức & Blog</h2>
+  <div class="grid grid-products">
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-2.jpg" alt="Bài viết 1"></div>
+      <div class="card-body">
+        <div class="card-title">5 mẹo chọn laptop phù hợp cho học sinh</div>
+        <div class="card-text">Tổng hợp những tiêu chí quan trọng: pin, cấu hình, trọng lượng và ngân sách để chọn laptop học tập hiệu quả.</div>
+        <a href="blog.html#post-1" class="btn btn-outline" style="margin-top:12px">Đọc tiếp</a>
+      </div>
+    </div>
+
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-3.jpg" alt="Bài viết 2"></div>
+      <div class="card-body">
+        <div class="card-title">Lựa chọn tai nghe: ANC hay không ANC?</div>
+        <div class="card-text">Phân tích ưu - nhược điểm của tai nghe chống ồn chủ động (ANC) so với tai nghe thông thường cho nhiều nhu cầu sử dụng.</div>
+        <a href="blog.html#post-2" class="btn btn-outline" style="margin-top:12px">Đọc tiếp</a>
+      </div>
+    </div>
+
+    <div class="card product-card">
+      <div class="image-wrapper"><img src="assets/img/product-6.jpg" alt="Bài viết 3"></div>
+      <div class="card-body">
+        <div class="card-title">Top loa Bluetooth nhỏ gọn cho phòng kín</div>
+        <div class="card-text">Gợi ý các mẫu loa nhỏ gọn có âm trầm tốt, pin lâu và kích thước phù hợp đặt trên bàn học.</div>
+        <a href="blog.html#post-3" class="btn btn-outline" style="margin-top:12px">Đọc tiếp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">© 2026 SimpleWeb</footer>
+
+</body>
+</html>

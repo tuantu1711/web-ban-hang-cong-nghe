@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hoàn tất</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<script>
+fetch('navbar.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('navbar-placeholder').innerHTML = data;
+  });
+</script>
+
+<section class="container mt-section" style="text-align:center">
+<div class="hero-box">
+<h2>Đặt hàng thành công</h2>
+<a href="index.html" class="btn btn-primary">Về trang chủ</a>
+</div>
+</section>
+
+<footer class="footer">© 2026 SimpleWeb</footer>
+</body>
+</html>

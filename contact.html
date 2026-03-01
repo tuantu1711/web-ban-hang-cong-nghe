@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liên hệ</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<script>
+fetch('navbar.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('navbar-placeholder').innerHTML = data;
+  });
+</script>
+
+<section class="container mt-section">
+  <h2 style="text-align:center;">Liên hệ</h2>
+
+  <div style="max-width:600px; margin:40px auto;">
+    <form id="contactForm">
+      <input required placeholder="Họ tên">
+      <input required type="email" placeholder="Email">
+      <textarea required rows="5" placeholder="Nội dung"></textarea>
+      <button class="btn btn-primary" style="width:100%;">Gửi</button>
+    </form>
+  </div>
+</section>
+
+<div id="toast" class="notification">Gửi thành công</div>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  let t=document.getElementById('toast');
+  t.style.display='block';
+  setTimeout(()=>{t.style.display='none'},2000);
+});
+</script>
+
+<footer class="footer">© 2026 SimpleWeb</footer>
+
+</body>
+</html>

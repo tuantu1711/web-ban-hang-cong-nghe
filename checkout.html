@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thanh toán</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<script>
+fetch('navbar.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('navbar-placeholder').innerHTML = data;
+  });
+</script>
+
+<section class="container mt-section" style="max-width:500px">
+<h2>Thanh toán</h2>
+<form id="checkoutForm">
+<input required placeholder="Họ tên">
+<input required type="email" placeholder="Email">
+<input required placeholder="Địa chỉ">
+<button class="btn btn-primary">Xác nhận</button>
+</form>
+</section>
+
+<div id="toast2" class="notification">Đặt hàng thành công</div>
+
+<script>
+document.getElementById('checkoutForm').addEventListener('submit',function(e){
+e.preventDefault();
+document.getElementById('toast2').style.display='block';
+setTimeout(()=>{window.location='success.html'},1000);
+});
+</script>
+
+<footer class="footer">© 2026 SimpleWeb</footer>
+</body>
+</html>

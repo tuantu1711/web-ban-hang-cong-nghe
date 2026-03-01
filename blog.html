@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog - SimpleWeb</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<script>
+fetch('navbar.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('navbar-placeholder').innerHTML = data;
+  });
+</script>
+
+<section class="container mt-section">
+  <h2>Blog</h2>
+
+  <div class="grid grid-2" style="gap:20px; align-items:start;">
+    <div class="card" id="post-1">
+      <div class="card-body">
+        <h3>5 mẹo chọn laptop phù hợp cho học sinh</h3>
+        <p>Lựa chọn laptop cho học sinh không chỉ là cân nhắc cấu hình — cần lưu ý thời lượng pin, trọng lượng và khả năng nâng cấp. Bài viết này phân tích từng yếu tố và đưa ra gợi ý cho từng mức ngân sách.</p>
+        <p><strong>Ngày:</strong> 01/03/2026</p>
+      </div>
+    </div>
+
+    <div class="card" id="post-2">
+      <div class="card-body">
+        <h3>Lựa chọn tai nghe: ANC hay không ANC?</h3>
+        <p>Tai nghe có ANC giúp giảm tiếng ồn xung quanh, thích hợp khi học online hoặc di chuyển. Tuy nhiên tai nghe không ANC có lợi thế về giá thành và độ trung thực âm thanh trong một số trường hợp.</p>
+        <p><strong>Ngày:</strong> 20/02/2026</p>
+      </div>
+    </div>
+
+    <div class="card" id="post-3">
+      <div class="card-body">
+        <h3>Top loa Bluetooth nhỏ gọn cho phòng kín</h3>
+        <p>Đối với không gian nhỏ, loa Bluetooth nhỏ gọn với âm trầm được tinh chỉnh kỹ thường cho trải nghiệm tốt hơn. Bài viết gợi ý các tiêu chí chọn và vài model tiêu biểu.</p>
+        <p><strong>Ngày:</strong> 10/02/2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">© 2026 SimpleWeb</footer>
+
+</body>
+</html>
