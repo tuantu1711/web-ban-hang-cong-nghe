@@ -18,65 +18,90 @@ fetch('navbar.html')
   });
 </script>
 
+<section class="container mt-section">
+
+  <div class="card" style="padding:20px; display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap;">
+    <div style="flex:1 1 320px;">
+      <div class="product-image" style="width:100%; padding-top:75%; position:relative; background:#f2f4f6;">
+        <img src="" alt="" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
+      </div>
+    </div>
+
+    <div style="flex:1 1 300px;">
+      <h1 id="product-title">—</h1>
+      <p class="product-desc">—</p>
+      <div style="margin:12px 0;">
+        <strong>Giá:</strong> <span id="product-price">Liên hệ</span>
+      </div>
+
+      <table style="width:100%; border-collapse:collapse;">
+        <tbody>
+          <tr class="spec-row"><td style="padding:6px; width:40%;"><strong>—</strong></td><td style="padding:6px;">—</td></tr>
+          <tr class="spec-row"><td style="padding:6px;"><strong>—</strong></td><td style="padding:6px;">—</td></tr>
+          <tr class="spec-row"><td style="padding:6px;"><strong>—</strong></td><td style="padding:6px;">—</td></tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:18px;">
+        <a id="addToCart" class="btn btn-primary" href="cart.html">Thêm vào giỏ</a>
+        <a id="backToShop" class="btn btn-outline" href="shop.html" style="margin-left:10px">Quay về cửa hàng</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="notfound" style="display:none; margin-top:20px;">
+    <div class="card" style="padding:18px;">
+      <h3>Sản phẩm không tìm thấy</h3>
+      <p>Hoặc sản phẩm đã bị xóa. <a href="shop.html">Quay về cửa hàng</a></p>
+    </div>
+  </div>
+</section>
+
 <script>
+
 const products = {
-  1: {
-    title: "Laptop Pro",
-    img: "assets/img/product-1.jpg",
-    desc: "Hiệu năng cao, phù hợp học tập và làm việc.",
-    specs: { CPU: "Intel i7", RAM: "16GB", SSD: "512GB" }
-  },
-  2: {
-    title: "Smartphone",
-    img: "assets/img/product-2.jpg",
-    desc: "Màn hình sắc nét, pin trâu.",
-    specs: { Chip: "Snapdragon", RAM: "8GB", Storage: "256GB" }
-  },
-  3: {
-    title: "Tai nghe Bluetooth",
-    img: "assets/img/product-3.jpg",
-    desc: "Âm thanh cân bằng, chống ồn.",
-    specs: { Type: "Over-ear", Mic: "Có", ANC: "Có" }
-  },
-  4: {
-    title: "Bàn phím cơ",
-    img: "assets/img/product-4.jpg",
-    desc: "Switch chất lượng, bền bỉ.",
-    specs: { Switch: "Blue", Layout: "Full size" }
-  },
-  5: {
-    title: "Chuột gaming",
-    img: "assets/img/product-5.jpg",
-    desc: "DPI cao, độ chính xác tốt.",
-    specs: { DPI: "12000", Wireless: "Có" }
-  },
-  6: {
-    title: "Loa Bluetooth",
-    img: "assets/img/product-6.jpg",
-    desc: "Âm trầm mạnh, thiết kế gọn.",
-    specs: { Battery: "8h", Bluetooth: "5.0" }
-  }
+  1: { title: "Laptop Pro", img: "assets/img/product-1.jpg", desc: "Hiệu năng cao, phù hợp học tập và làm việc.", price: "12.500.000₫", specs: { CPU: "Intel i7", RAM: "16GB", SSD: "512GB" } },
+  2: { title: "Smartphone", img: "assets/img/product-2.jpg", desc: "Màn hình sắc nét, pin trâu.", price: "7.200.000₫", specs: { Chip: "Snapdragon", RAM: "8GB", Storage: "256GB" } },
+  3: { title: "Tai nghe Bluetooth", img: "assets/img/product-3.jpg", desc: "Âm thanh cân bằng, chống ồn.", price: "1.150.000₫", specs: { Type: "Over-ear", Mic: "Có", ANC: "Có" } },
+  4: { title: "Bàn phím cơ", img: "assets/img/product-4.jpg", desc: "Switch chất lượng, bền bỉ.", price: "950.000₫", specs: { Switch: "Blue", Layout: "Full size" } },
+  5: { title: "Chuột gaming", img: "assets/img/product-5.jpg", desc: "DPI cao, độ chính xác tốt.", price: "520.000₫", specs: { DPI: "12000", Wireless: "Có" } },
+  6: { title: "Loa Bluetooth", img: "assets/img/product-6.jpg", desc: "Âm trầm mạnh, thiết kế gọn.", price: "780.000₫", specs: { Battery: "8h", Bluetooth: "5.0" } }
 };
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-if (products[id]) {
+function showNotFound() {
+  document.querySelector('section.container').querySelector('div.card').style.display='none';
+  document.getElementById('notfound').style.display='block';
+}
+
+if (!id || !products[id]) {
+  showNotFound();
+} else {
   const p = products[id];
 
-  document.querySelector("h1").innerText = p.title;
-  document.querySelector(".product-image img").src = p.img;
-  document.querySelector(".product-desc").innerText = p.desc;
+  document.getElementById('product-title').innerText = p.title;
+  document.querySelector('.product-image img').src = p.img;
+  document.querySelector('.product-image img').alt = p.title;
+  document.querySelector('.product-desc').innerText = p.desc;
+  document.getElementById('product-price').innerText = p.price || "Liên hệ";
 
-  const specRows = document.querySelectorAll(".spec-row");
-  const keys = Object.keys(p.specs);
-
+  const specRows = document.querySelectorAll('.spec-row');
+  const keys = Object.keys(p.specs || {});
   specRows.forEach((row, index) => {
+    const kElem = row.children[0];
+    const vElem = row.children[1];
     if (keys[index]) {
-      row.children[0].innerText = keys[index];
-      row.children[1].innerText = p.specs[keys[index]];
+      kElem.innerText = keys[index];
+      vElem.innerText = p.specs[keys[index]];
+    } else {
+      row.style.display = 'none';
     }
   });
+
+
+  document.getElementById('addToCart').href = `cart.html?add=${encodeURIComponent(id)}`;
 }
 </script>
 
