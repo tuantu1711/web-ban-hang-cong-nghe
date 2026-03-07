@@ -1,9 +1,26 @@
 <header class="navbar">
   <div class="container">
     <div>SimpleWeb</div>
+
     <nav>
       <a href="index.html">Trang chủ</a>
-      <a href="shop.html">Sản phẩm</a>
+
+      <div class="dropdown">
+
+        <a href="shop.html" aria-haspopup="true" aria-expanded="false">
+          <span class="nav-text">Sản phẩm</span>
+          <span class="caret">▾</span>
+        </a>
+
+        <div class="dropdown-menu" role="menu" aria-hidden="true">
+          <a href="shop.html">Tất cả</a>
+          <a href="shop.html?cat=laptop">Laptop</a>
+          <a href="shop.html?cat=phone">Điện thoại</a>
+          <a href="shop.html?cat=audio">Tai nghe / Loa</a>
+          <a href="shop.html?cat=accessory">Phụ kiện</a>
+        </div>
+      </div>
+
       <a href="cart.html">Giỏ hàng</a>
       <a href="contact.html">Liên hệ</a>
       <a href="blog.html">Blog</a>

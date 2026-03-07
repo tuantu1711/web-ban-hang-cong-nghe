@@ -35,10 +35,7 @@ fetch('navbar.html')
       </div>
 
       <table style="width:100%; border-collapse:collapse;">
-        <tbody>
-          <tr class="spec-row"><td style="padding:6px; width:40%;"><strong>—</strong></td><td style="padding:6px;">—</td></tr>
-          <tr class="spec-row"><td style="padding:6px;"><strong>—</strong></td><td style="padding:6px;">—</td></tr>
-          <tr class="spec-row"><td style="padding:6px;"><strong>—</strong></td><td style="padding:6px;">—</td></tr>
+        <tbody id="spec-body">
         </tbody>
       </table>
 
@@ -58,14 +55,27 @@ fetch('navbar.html')
 </section>
 
 <script>
-
 const products = {
-  1: { title: "Laptop Pro", img: "assets/img/product-1.jpg", desc: "Hiệu năng cao, phù hợp học tập và làm việc.", price: "12.500.000₫", specs: { CPU: "Intel i7", RAM: "16GB", SSD: "512GB" } },
-  2: { title: "Smartphone", img: "assets/img/product-2.jpg", desc: "Màn hình sắc nét, pin trâu.", price: "7.200.000₫", specs: { Chip: "Snapdragon", RAM: "8GB", Storage: "256GB" } },
-  3: { title: "Tai nghe Bluetooth", img: "assets/img/product-3.jpg", desc: "Âm thanh cân bằng, chống ồn.", price: "1.150.000₫", specs: { Type: "Over-ear", Mic: "Có", ANC: "Có" } },
-  4: { title: "Bàn phím cơ", img: "assets/img/product-4.jpg", desc: "Switch chất lượng, bền bỉ.", price: "950.000₫", specs: { Switch: "Blue", Layout: "Full size" } },
-  5: { title: "Chuột gaming", img: "assets/img/product-5.jpg", desc: "DPI cao, độ chính xác tốt.", price: "520.000₫", specs: { DPI: "12000", Wireless: "Có" } },
-  6: { title: "Loa Bluetooth", img: "assets/img/product-6.jpg", desc: "Âm trầm mạnh, thiết kế gọn.", price: "780.000₫", specs: { Battery: "8h", Bluetooth: "5.0" } }
+  1: { title: "Dell XPS 13", img: "assets/img/product-1.jpg", desc: "Laptop mỏng nhẹ, phù hợp học & làm việc.", price: "12.500.000₫", specs: { CPU: "Intel i7-1360P", RAM: "16GB", Storage: "512GB" } },
+  2: { title: "iPhone 14", img: "assets/img/product-2.jpg", desc: "Màn hình OLED, camera xuất sắc.", price: "7.200.000₫", specs: { Chip: "Apple A15", RAM: "6GB", Storage: "256GB" } },
+  3: { title: "Razer Kraken X", img: "assets/img/product-3.jpg", desc: "Tai nghe gaming, mic tốt, êm.", price: "1.150.000₫", specs: { Type: "Gaming", ANC: "Không" } },
+  4: { title: "AKKO Mechanical Keyboard", img: "assets/img/product-4.jpg", desc: "Bàn phím cơ switch chất lượng.", price: "950.000₫", specs: { Switch: "AKKO", Layout: "Full size" } },
+  5: { title: "Logitech G Pro Mouse", img: "assets/img/product-5.jpg", desc: "Chuột gaming, DPI cao, bền.", price: "520.000₫", specs: { DPI: "16000", Wireless: "Có" } },
+  6: { title: "JBL Pulse 4", img: "assets/img/product-6.jpg", desc: "Loa Bluetooth, bass mạnh, pin lâu.", price: "780.000₫", specs: { Battery: "12h", Bluetooth: "5.0" } },
+  7: { title: "MacBook Air M2", img: "assets/img/product-1.jpg", desc: "Mỏng nhẹ, hiệu năng M2, pin lâu.", price: "24.500.000₫", specs: { Chip: "Apple M2", RAM: "8GB", Storage: "256GB" } },
+  8: { title: "Samsung Galaxy S23", img: "assets/img/product-2.jpg", desc: "Camera mạnh, màn hình 120Hz.", price: "15.900.000₫", specs: { Chip: "Snapdragon 8 Gen2", RAM: "8GB", Storage: "256GB" } },
+  9: { title: "Sony WH-1000XM5", img: "assets/img/product-3.jpg", desc: "Tai nghe ANC cao cấp, âm thanh trong.", price: "5.200.000₫", specs: { ANC: "Có", Type: "Over-ear" } },
+  10:{ title: "Corsair K70 RGB", img: "assets/img/product-4.jpg", desc: "Bàn phím cơ gaming, switch Cherry.", price: "2.500.000₫", specs: { Switch: "Cherry MX", Layout: "Full size" } },
+  11:{ title: "HP Pavilion 15", img: "assets/img/product-1.jpg", desc: "Laptop phổ thông, cấu hình cân bằng.", price: "10.900.000₫", specs: { CPU: "Intel i5", RAM: "8GB", Storage: "512GB" } },
+  12:{ title: "Xiaomi Redmi Note 12", img: "assets/img/product-2.jpg", desc: "Pin lớn, giá hợp lý.", price: "4.200.000₫", specs: { Chip: "Snapdragon 685", RAM: "6GB", Storage: "128GB" } },
+  13:{ title: "HyperX Cloud II", img: "assets/img/product-3.jpg", desc: "Tai nghe thoải mái cho chơi game.", price: "1.490.000₫", specs: { Type: "Gaming", Mic: "Có" } },
+  14:{ title: "SteelSeries Apex 7", img: "assets/img/product-4.jpg", desc: "Bàn phím cơ có màn hình OLED.", price: "3.200.000₫", specs: { Switch: "SteelSeries", OLED: "Có" } },
+  15:{ title: "Acer Swift 3", img: "assets/img/product-1.jpg", desc: "Ultrabook mỏng, hiệu năng tốt.", price: "12.900.000₫", specs: { Chip: "Ryzen 7 5700U", RAM: "8GB", Storage: "512GB" } },
+  16:{ title: "OnePlus 11", img: "assets/img/product-2.jpg", desc: "Smartphone flagship, sạc nhanh.", price: "13.900.000₫", specs: { Chip: "Snapdragon 8 Gen2", RAM: "12GB", Storage: "256GB" } },
+  17:{ title: "Anker Soundcore", img: "assets/img/product-6.jpg", desc: "Loa di động, pin bền, âm trầm tốt.", price: "890.000₫", specs: { Battery: "10h", Bluetooth: "5.0" } },
+  18:{ title: "MSI GF63", img: "assets/img/product-1.jpg", desc: "Laptop gaming nhẹ, GPU rời.", price: "17.900.000₫", specs: { CPU: "Intel i7", RAM: "16GB", Storage: "512GB" } },
+  19:{ title: "Sennheiser HD 560S", img: "assets/img/product-3.jpg", desc: "Tai nghe studio, âm thanh trung thực.", price: "2.990.000₫", specs: { Type: "Studio", Impedance: "120Ω" } },
+  20:{ title: "Microsoft Surface Keyboard", img: "assets/img/product-4.jpg", desc: "Bàn phím cao cấp cho văn phòng.", price: "1.190.000₫", specs: { Layout: "Compact", Connection: "Bluetooth" } }
 };
 
 const params = new URLSearchParams(window.location.search);
@@ -87,19 +97,13 @@ if (!id || !products[id]) {
   document.querySelector('.product-desc').innerText = p.desc;
   document.getElementById('product-price').innerText = p.price || "Liên hệ";
 
-  const specRows = document.querySelectorAll('.spec-row');
-  const keys = Object.keys(p.specs || {});
-  specRows.forEach((row, index) => {
-    const kElem = row.children[0];
-    const vElem = row.children[1];
-    if (keys[index]) {
-      kElem.innerText = keys[index];
-      vElem.innerText = p.specs[keys[index]];
-    } else {
-      row.style.display = 'none';
-    }
+  const specBody = document.getElementById('spec-body');
+  specBody.innerHTML = '';
+  Object.entries(p.specs || {}).forEach(([k,v]) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td style="padding:6px; width:40%;"><strong>${k}</strong></td><td style="padding:6px;">${v}</td>`;
+    specBody.appendChild(tr);
   });
-
 
   document.getElementById('addToCart').href = `cart.html?add=${encodeURIComponent(id)}`;
 }

@@ -20,70 +20,129 @@ fetch('navbar.html')
 
 <section class="container mt-section">
   <h2>Cửa hàng</h2>
-  <div class="grid grid-products">
-    <div class="card product-card">
-      <div class="image-wrapper"><img src="assets/img/product-1.jpg" alt="Laptop Pro"></div>
-      <div class="product-meta card-body">
-        <div class="card-title">Laptop Pro</div>
-        <div class="card-text">Hiệu năng cao, phù hợp học và làm việc</div>
-        <div class="product-price">12.500.000₫</div>
-        <div style="margin-top:auto"><a href="product.html?id=1" class="btn btn-primary">Xem</a></div>
-      </div>
-    </div>
 
-    <div class="card product-card">
-      <div class="image-wrapper"><img src="assets/img/product-2.jpg" alt="Smartphone"></div>
-      <div class="product-meta card-body">
-        <div class="card-title">Smartphone</div>
-        <div class="card-text">Màn hình sắc nét, pin trâu</div>
-        <div class="product-price">7.200.000₫</div>
-        <div style="margin-top:auto"><a href="product.html?id=2" class="btn btn-primary">Xem</a></div>
-      </div>
-    </div>
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <select id="filter-category">
+      <option value="">Tất cả loại</option>
+      <option value="laptop">Laptop</option>
+      <option value="phone">Điện thoại</option>
+      <option value="audio">Tai nghe / Loa</option>
+      <option value="accessory">Phụ kiện</option>
+    </select>
 
-    <div class="card product-card">
-      <div class="image-wrapper"><img src="assets/img/product-3.jpg" alt="Tai nghe Bluetooth"></div>
-      <div class="product-meta card-body">
-        <div class="card-title">Tai nghe Bluetooth</div>
-        <div class="card-text">Âm thanh cân bằng, chống ồn</div>
-        <div class="product-price">1.150.000₫</div>
-        <div style="margin-top:auto"><a href="product.html?id=3" class="btn btn-primary">Xem</a></div>
-      </div>
-    </div>
+    <select id="filter-storage">
+      <option value="">Dung lượng (Storage)</option>
+      <option value="128">128GB</option>
+      <option value="256">256GB</option>
+      <option value="512">512GB</option>
+      <option value="1024">1TB</option>
+    </select>
 
-    <div class="card product-card">
-      <div class="image-wrapper"><img src="assets/img/product-4.jpg" alt="Bàn phím cơ"></div>
-      <div class="product-meta card-body">
-        <div class="card-title">Bàn phím cơ</div>
-        <div class="card-text">Switch chất lượng, bền bỉ</div>
-        <div class="product-price">950.000₫</div>
-        <div style="margin-top:auto"><a href="product.html?id=4" class="btn btn-primary">Xem</a></div>
-      </div>
-    </div>
-
-    <div class="card product-card">
-      <div class="image-wrapper"><img src="assets/img/product-5.jpg" alt="Chuột gaming"></div>
-      <div class="product-meta card-body">
-        <div class="card-title">Chuột gaming</div>
-        <div class="card-text">Độ chính xác cao, DPI tuỳ chỉnh</div>
-        <div class="product-price">520.000₫</div>
-        <div style="margin-top:auto"><a href="product.html?id=5" class="btn btn-primary">Xem</a></div>
-      </div>
-    </div>
-
-    <div class="card product-card">
-      <div class="image-wrapper"><img src="assets/img/product-6.jpg" alt="Loa Bluetooth"></div>
-      <div class="product-meta card-body">
-        <div class="card-title">Loa Bluetooth</div>
-        <div class="card-text">Âm trầm mạnh, kích thước gọn</div>
-        <div class="product-price">780.000₫</div>
-        <div style="margin-top:auto"><a href="product.html?id=6" class="btn btn-primary">Xem</a></div>
-      </div>
-    </div>
-
+    <select id="sort-by">
+      <option value="">Sắp xếp</option>
+      <option value="price-asc">Giá thấp → cao</option>
+      <option value="price-desc">Giá cao → thấp</option>
+    </select>
   </div>
+
+  <!-- PRODUCTS GRID (JS render) -->
+  <div class="grid grid-products" id="products-grid"></div>
 </section>
 
 <footer class="footer">© 2026 SimpleWeb</footer>
 
+<script>
+
+const products = {
+  1: { title: "Dell XPS 13", img: "assets/img/product-1.jpg", desc: "Laptop mỏng nhẹ, phù hợp học & làm việc.", price: 12500000, category: "laptop", specs:{Chip:"Intel i7-1360P", RAM:"16GB", Storage:"512"} },
+  2: { title: "iPhone 14", img: "assets/img/product-2.jpg", desc: "Màn hình OLED, camera xuất sắc.", price: 7200000, category: "phone", specs:{Chip:"Apple A15", RAM:"6GB", Storage:"256"} },
+  3: { title: "Razer Kraken X", img: "assets/img/product-3.jpg", desc: "Tai nghe gaming, mic tốt, êm.", price: 1150000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
+  4: { title: "AKKO Mechanical Keyboard", img: "assets/img/product-4.jpg", desc: "Bàn phím cơ switch chất lượng.", price: 950000, category: "accessory", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
+  5: { title: "Logitech G Pro Mouse", img: "assets/img/product-5.jpg", desc: "Chuột gaming, DPI cao, bền.", price: 520000, category: "accessory", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
+  6: { title: "JBL Pulse 4", img: "assets/img/product-6.jpg", desc: "Loa Bluetooth, bass mạnh, pin lâu.", price: 780000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
+  7: { title: "MacBook Air M2", img: "assets/img/product-1.jpg", desc: "Mỏng nhẹ, hiệu năng M2, pin lâu.", price: 24500000, category: "laptop", specs:{Chip:"Apple M2", RAM:"8GB", Storage:"256"} },
+  8: { title: "Samsung Galaxy S23", img: "assets/img/product-2.jpg", desc: "Camera mạnh, màn hình 120Hz.", price: 15900000, category: "phone", specs:{Chip:"Snapdragon 8 Gen2", RAM:"8GB", Storage:"256"} },
+  9: { title: "Sony WH-1000XM5", img: "assets/img/product-3.jpg", desc: "Tai nghe ANC cao cấp, âm thanh trong.", price: 5200000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
+  10:{ title: "Corsair K70 RGB", img: "assets/img/product-4.jpg", desc: "Bàn phím cơ gaming, switch Cherry.", price: 2500000, category: "accessory", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
+  11:{ title: "HP Pavilion 15", img: "assets/img/product-1.jpg", desc: "Laptop phổ thông, cấu hình cân bằng.", price: 10900000, category: "laptop", specs:{Chip:"Intel i5", RAM:"8GB", Storage:"512"} },
+  12:{ title: "Xiaomi Redmi Note 12", img: "assets/img/product-2.jpg", desc: "Pin lớn, giá hợp lý.", price: 4200000, category: "phone", specs:{Chip:"Snapdragon 685", RAM:"6GB", Storage:"128"} },
+  13:{ title: "HyperX Cloud II", img: "assets/img/product-3.jpg", desc: "Tai nghe thoải mái cho chơi game.", price: 1490000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
+  14:{ title: "SteelSeries Apex 7", img: "assets/img/product-4.jpg", desc: "Bàn phím cơ có màn hình OLED.", price: 3200000, category: "accessory", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
+  15:{ title: "Acer Swift 3", img: "assets/img/product-1.jpg", desc: "Ultrabook mỏng, hiệu năng tốt.", price: 12900000, category: "laptop", specs:{Chip:"Ryzen 7 5700U", RAM:"8GB", Storage:"512"} },
+  16:{ title: "OnePlus 11", img: "assets/img/product-2.jpg", desc: "Smartphone flagship, sạc nhanh.", price: 13900000, category: "phone", specs:{Chip:"Snapdragon 8 Gen2", RAM:"12GB", Storage:"256"} },
+  17:{ title: "Anker Soundcore", img: "assets/img/product-6.jpg", desc: "Loa di động, pin bền, âm trầm tốt.", price: 890000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
+  18:{ title: "MSI GF63", img: "assets/img/product-1.jpg", desc: "Laptop gaming nhẹ, GPU rời.", price: 17900000, category: "laptop", specs:{Chip:"Intel i7", RAM:"16GB", Storage:"512"} },
+  19:{ title: "Sennheiser HD 560S", img: "assets/img/product-3.jpg", desc: "Tai nghe studio, âm thanh trung thực.", price: 2990000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
+  20:{ title: "Microsoft Surface Keyboard", img: "assets/img/product-4.jpg", desc: "Bàn phím cao cấp cho văn phòng.", price: 1190000, category: "accessory", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} }
+};
+
+function formatPrice(v){ return v.toLocaleString() + "₫"; }
+
+function renderProducts(list){
+  const container = document.getElementById('products-grid');
+  container.innerHTML = Object.keys(list).map(key => {
+    const p = list[key];
+    return `
+      <div class="card product-card">
+        <div class="image-wrapper"><img src="${p.img}" alt="${p.title}"></div>
+        <div class="product-meta card-body">
+          <div class="card-title">${p.title}</div>
+          <div class="card-text">${p.desc}</div>
+          <div class="product-price">${formatPrice(p.price)}</div>
+          <div style="margin-top:auto">
+            <a href="product.html?id=${encodeURIComponent(key)}" class="btn btn-primary">Xem</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+renderProducts(products);
+
+const selCat = document.getElementById('filter-category');
+const selStorage = document.getElementById('filter-storage');
+const selSort = document.getElementById('sort-by');
+
+function applyFilters(){
+  let result = Object.entries(products).map(([id,p]) => ({ id, ...p }));
+
+  const cat = selCat.value;
+  if(cat){
+    result = result.filter(r => r.category === cat);
+  }
+
+  const storage = selStorage.value;
+  if(storage){
+    result = result.filter(r => {
+      const s = Number(r.specs.Storage) || 0;
+      return s === Number(storage);
+    });
+  }
+
+  const sortv = selSort.value;
+  if(sortv === 'price-asc'){
+    result.sort((a,b)=>a.price-b.price);
+  } else if(sortv === 'price-desc'){
+    result.sort((a,b)=>b.price-a.price);
+  }
+
+  const out = {};
+  result.forEach(r => out[r.id] = { title:r.title, img:r.img, desc:r.desc, price:r.price, category:r.category, specs:r.specs });
+  renderProducts(out);
+}
+
+selCat.addEventListener('change', applyFilters);
+selStorage.addEventListener('change', applyFilters);
+selSort.addEventListener('change', applyFilters);
+
+
+const qs = new URLSearchParams(window.location.search);
+if(qs.get('cat')){
+  selCat.value = qs.get('cat');
+  applyFilters();
+}
+</script>
 </body>
+</html>
