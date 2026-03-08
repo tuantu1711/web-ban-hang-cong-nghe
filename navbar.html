@@ -1,18 +1,16 @@
 <header class="navbar">
   <div class="container">
-    <div>SimpleWeb</div>
+    <div class="brand"><a href="index.html">SimpleWeb</a></div>
 
-    <nav>
-      <a href="index.html">Trang chủ</a>
+    <nav class="nav-main">
+      <a class="nav-link" href="index.html">Trang chủ</a>
 
       <div class="dropdown">
-
-        <a href="shop.html" aria-haspopup="true" aria-expanded="false">
-          <span class="nav-text">Sản phẩm</span>
-          <span class="caret">▾</span>
+        <a class="nav-link dropdown-toggle" href="#">
+          Sản phẩm <span class="caret">▾</span>
         </a>
 
-        <div class="dropdown-menu" role="menu" aria-hidden="true">
+        <div class="dropdown-menu">
           <a href="shop.html">Tất cả</a>
           <a href="shop.html?cat=laptop">Laptop</a>
           <a href="shop.html?cat=phone">Điện thoại</a>
@@ -21,10 +19,10 @@
         </div>
       </div>
 
-      <a href="cart.html">Giỏ hàng</a>
-      <a href="contact.html">Liên hệ</a>
-      <a href="blog.html">Blog</a>
-      <a href="login.html">Đăng nhập</a>
+      <a class="nav-link" href="cart.html">Giỏ hàng</a>
+      <a class="nav-link" href="contact.html">Liên hệ</a>
+      <a class="nav-link" href="blog.html">Blog</a>
+      <a class="nav-link" href="login.html">Đăng nhập</a>
     </nav>
   </div>
 </header>

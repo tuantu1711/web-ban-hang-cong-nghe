@@ -21,7 +21,6 @@ fetch('navbar.html')
 <section class="container mt-section">
   <h2>Cửa hàng</h2>
 
-  <!-- FILTER BAR -->
   <div class="filter-bar">
     <select id="filter-category">
       <option value="">Tất cả loại</option>
@@ -33,10 +32,21 @@ fetch('navbar.html')
 
     <select id="filter-storage">
       <option value="">Dung lượng (Storage)</option>
+      <option value="64">64GB</option>
       <option value="128">128GB</option>
       <option value="256">256GB</option>
       <option value="512">512GB</option>
       <option value="1024">1TB</option>
+    </select>
+
+    <select id="filter-ram">
+      <option value="">RAM</option>
+      <option value="4">4GB</option>
+      <option value="6">6GB</option>
+      <option value="8">8GB</option>
+      <option value="12">12GB</option>
+      <option value="16">16GB</option>
+      <option value="32">32GB</option>
     </select>
 
     <select id="sort-by">
@@ -46,35 +56,33 @@ fetch('navbar.html')
     </select>
   </div>
 
-  <!-- PRODUCTS GRID (JS render) -->
   <div class="grid grid-products" id="products-grid"></div>
 </section>
 
 <footer class="footer">© 2026 SimpleWeb</footer>
 
 <script>
-
 const products = {
-  1: { title: "Dell XPS 13", img: "assets/img/product-1.jpg", desc: "Laptop mỏng nhẹ, phù hợp học & làm việc.", price: 12500000, category: "laptop", specs:{Chip:"Intel i7-1360P", RAM:"16GB", Storage:"512"} },
-  2: { title: "iPhone 14", img: "assets/img/product-2.jpg", desc: "Màn hình OLED, camera xuất sắc.", price: 7200000, category: "phone", specs:{Chip:"Apple A15", RAM:"6GB", Storage:"256"} },
-  3: { title: "Razer Kraken X", img: "assets/img/product-3.jpg", desc: "Tai nghe gaming, mic tốt, êm.", price: 1150000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
-  4: { title: "AKKO Mechanical Keyboard", img: "assets/img/product-4.jpg", desc: "Bàn phím cơ switch chất lượng.", price: 950000, category: "accessory", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
-  5: { title: "Logitech G Pro Mouse", img: "assets/img/product-5.jpg", desc: "Chuột gaming, DPI cao, bền.", price: 520000, category: "accessory", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
-  6: { title: "JBL Pulse 4", img: "assets/img/product-6.jpg", desc: "Loa Bluetooth, bass mạnh, pin lâu.", price: 780000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
-  7: { title: "MacBook Air M2", img: "assets/img/product-1.jpg", desc: "Mỏng nhẹ, hiệu năng M2, pin lâu.", price: 24500000, category: "laptop", specs:{Chip:"Apple M2", RAM:"8GB", Storage:"256"} },
-  8: { title: "Samsung Galaxy S23", img: "assets/img/product-2.jpg", desc: "Camera mạnh, màn hình 120Hz.", price: 15900000, category: "phone", specs:{Chip:"Snapdragon 8 Gen2", RAM:"8GB", Storage:"256"} },
-  9: { title: "Sony WH-1000XM5", img: "assets/img/product-3.jpg", desc: "Tai nghe ANC cao cấp, âm thanh trong.", price: 5200000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
-  10:{ title: "Corsair K70 RGB", img: "assets/img/product-4.jpg", desc: "Bàn phím cơ gaming, switch Cherry.", price: 2500000, category: "accessory", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
-  11:{ title: "HP Pavilion 15", img: "assets/img/product-1.jpg", desc: "Laptop phổ thông, cấu hình cân bằng.", price: 10900000, category: "laptop", specs:{Chip:"Intel i5", RAM:"8GB", Storage:"512"} },
-  12:{ title: "Xiaomi Redmi Note 12", img: "assets/img/product-2.jpg", desc: "Pin lớn, giá hợp lý.", price: 4200000, category: "phone", specs:{Chip:"Snapdragon 685", RAM:"6GB", Storage:"128"} },
-  13:{ title: "HyperX Cloud II", img: "assets/img/product-3.jpg", desc: "Tai nghe thoải mái cho chơi game.", price: 1490000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
-  14:{ title: "SteelSeries Apex 7", img: "assets/img/product-4.jpg", desc: "Bàn phím cơ có màn hình OLED.", price: 3200000, category: "accessory", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
-  15:{ title: "Acer Swift 3", img: "assets/img/product-1.jpg", desc: "Ultrabook mỏng, hiệu năng tốt.", price: 12900000, category: "laptop", specs:{Chip:"Ryzen 7 5700U", RAM:"8GB", Storage:"512"} },
-  16:{ title: "OnePlus 11", img: "assets/img/product-2.jpg", desc: "Smartphone flagship, sạc nhanh.", price: 13900000, category: "phone", specs:{Chip:"Snapdragon 8 Gen2", RAM:"12GB", Storage:"256"} },
-  17:{ title: "Anker Soundcore", img: "assets/img/product-6.jpg", desc: "Loa di động, pin bền, âm trầm tốt.", price: 890000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
-  18:{ title: "MSI GF63", img: "assets/img/product-1.jpg", desc: "Laptop gaming nhẹ, GPU rời.", price: 17900000, category: "laptop", specs:{Chip:"Intel i7", RAM:"16GB", Storage:"512"} },
-  19:{ title: "Sennheiser HD 560S", img: "assets/img/product-3.jpg", desc: "Tai nghe studio, âm thanh trung thực.", price: 2990000, category: "audio", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} },
-  20:{ title: "Microsoft Surface Keyboard", img: "assets/img/product-4.jpg", desc: "Bàn phím cao cấp cho văn phòng.", price: 1190000, category: "accessory", specs:{Chip:"N/A", RAM:"N/A", Storage:"0"} }
+  1: { title: "MacBook Air M3 8GB 256GB", img: "assets/img/p1.jpg", desc: "Ultrabook mỏng nhẹ, chip Apple M3.", price: 25190000, category: "laptop", specs:{Chip:"Apple M3", RAM:"8GB", Storage:"256"} },
+  2: { title: "iPhone 17 256GB", img: "assets/img/p2.jpg", desc: "iPhone 17, chip A19, màn hình 6.1\"", price: 24590000, category: "phone", specs:{Chip:"Apple A19", RAM:"8GB", Storage:"256"} },
+  3: { title: "Sony WH-1000XM6", img: "assets/img/p3.jpg", desc: "Tai nghe chống ồn cao cấp.", price: 6200000, category: "audio", specs:{Type:"Over-ear", RAM:"N/A", Storage:"0"} },
+  4: { title: "Corsair K70 Pro", img: "assets/img/p4.jpg", desc: "Bàn phím cơ chơi game.", price: 3200000, category: "accessory", specs:{Switch:"Corsair", RAM:"N/A", Storage:"0"} },
+  5: { title: "Logitech G Pro X2 Mouse", img: "assets/img/p5.jpg", desc: "Chuột gaming hiệu năng cao.", price: 1590000, category: "accessory", specs:{DPI:"26000", RAM:"N/A", Storage:"0"} },
+  6: { title: "JBL Xtreme 4", img: "assets/img/p6.jpg", desc: "Loa di động bass mạnh.", price: 1700000, category: "audio", specs:{Battery:"15h", RAM:"N/A", Storage:"0"} },
+  7: { title: "MacBook Pro M5 14\" 16GB", img: "assets/img/p7.jpg", desc: "MacBook Pro M5 cho sáng tạo.", price: 43900000, category: "laptop", specs:{Chip:"Apple M5", RAM:"16GB", Storage:"512"} },
+  8: { title: "Samsung Galaxy S26 256GB", img: "assets/img/p8.jpg", desc: "Galaxy S26, camera AI, 120Hz.", price: 25990000, category: "phone", specs:{Chip:"Snapdragon 8 Gen3", RAM:"12GB", Storage:"256"} },
+  9: { title: "Sony LinkBuds 3", img: "assets/img/p9.jpg", desc: "Earbuds nhẹ, nghe thông minh.", price: 3900000, category: "audio", specs:{Type:"In-ear", RAM:"N/A", Storage:"0"} },
+  10:{ title: "Keychron Q2", img: "assets/img/p10.jpg", desc: "Bàn phím custom compact.", price: 2800000, category: "accessory", specs:{Layout:"60%", RAM:"N/A", Storage:"0"} },
+  11:{ title: "Dell XPS 14 2026", img: "assets/img/p11.jpg", desc: "Laptop cao cấp Intel Ultra.", price: 28500000, category: "laptop", specs:{CPU:"Intel Core Ultra", RAM:"16GB", Storage:"512"} },
+  12:{ title: "Xiaomi 14 Ultra 256GB", img: "assets/img/p12.jpg", desc: "Flagship Xiaomi, camera mạnh.", price: 18900000, category: "phone", specs:{Chip:"Snapdragon 8 Gen3", RAM:"16GB", Storage:"256"} },
+  13:{ title: "HyperX Cloud Alpha 2", img: "assets/img/p13.jpg", desc: "Tai nghe gaming thoải mái.", price: 1200000, category: "audio", specs:{Type:"Gaming", RAM:"N/A", Storage:"0"} },
+  14:{ title: "SteelSeries Apex Pro TKL", img: "assets/img/p14.jpg", desc: "Bàn phím cơ TKL chuyên game.", price: 3800000, category: "accessory", specs:{Switch:"SteelSeries", RAM:"N/A", Storage:"0"} },
+  15:{ title: "Acer Swift 5 2026", img: "assets/img/p15.jpg", desc: "Ultrabook mỏng nhẹ hiệu năng.", price: 19900000, category: "laptop", specs:{Chip:"Ryzen 7", RAM:"8GB", Storage:"512"} },
+  16:{ title: "OnePlus 13 256GB", img: "assets/img/p16.jpg", desc: "Smartphone flagship, sạc nhanh.", price: 13900000, category: "phone", specs:{Chip:"Snapdragon 8 Gen3", RAM:"12GB", Storage:"256"} },
+  17:{ title: "Anker Soundcore Motion Max", img: "assets/img/p17.jpg", desc: "Loa di động pin lớn.", price: 1100000, category: "audio", specs:{Battery:"14h", RAM:"N/A", Storage:"0"} },
+  18:{ title: "MSI Raider 16 32GB", img: "assets/img/p18.jpg", desc: "Laptop gaming cao cấp.", price: 36900000, category: "laptop", specs:{CPU:"Intel i9", RAM:"32GB", Storage:"1024"} },
+  19:{ title: "Sennheiser Momentum 4", img: "assets/img/p19.jpg", desc: "Tai nghe lifestyle chất lượng.", price: 4990000, category: "audio", specs:{Type:"Over-ear", RAM:"N/A", Storage:"0"} },
+  20:{ title: "Microsoft Designer Keyboard", img: "assets/img/p20.jpg", desc: "Bàn phím văn phòng cao cấp.", price: 1190000, category: "accessory", specs:{Layout:"Compact", RAM:"N/A", Storage:"0"} }
 };
 
 function formatPrice(v){ return v.toLocaleString() + "₫"; }
@@ -103,7 +111,9 @@ renderProducts(products);
 
 const selCat = document.getElementById('filter-category');
 const selStorage = document.getElementById('filter-storage');
+const selRam = document.getElementById('filter-ram');
 const selSort = document.getElementById('sort-by');
+
 
 function applyFilters(){
   let result = Object.entries(products).map(([id,p]) => ({ id, ...p }));
@@ -116,8 +126,16 @@ function applyFilters(){
   const storage = selStorage.value;
   if(storage){
     result = result.filter(r => {
-      const s = Number(r.specs.Storage) || 0;
+      const s = parseInt(r.specs.Storage) || 0;
       return s === Number(storage);
+    });
+  }
+
+  const ram = selRam.value;
+  if(ram){
+    result = result.filter(r => {
+      const rr = parseInt((r.specs.RAM+'').replace(/\D/g,'')) || 0;
+      return rr === Number(ram);
     });
   }
 
@@ -128,15 +146,15 @@ function applyFilters(){
     result.sort((a,b)=>b.price-a.price);
   }
 
-  const out = {};
-  result.forEach(r => out[r.id] = { title:r.title, img:r.img, desc:r.desc, price:r.price, category:r.category, specs:r.specs });
-  renderProducts(out);
+  renderProducts(result);
 }
 
-selCat.addEventListener('change', applyFilters);
+selCat.addEventListener('change', function(){
+  applyFilters();
+});
 selStorage.addEventListener('change', applyFilters);
+selRam.addEventListener('change', function(){ applyFilters(); });
 selSort.addEventListener('change', applyFilters);
-
 
 const qs = new URLSearchParams(window.location.search);
 if(qs.get('cat')){
